@@ -1,4 +1,4 @@
-const GameBoard = (() => {
+const GameBoard = ((x, o) => {
     /**Create the gameboard initially with Jquery, 
      * loop over the gameboard and push it into 
      * myGameBoard. Use Jquery to update array
@@ -27,9 +27,13 @@ const GameBoard = (() => {
     </tbody>
     </table>`
     let appendTable = $("body").append(table);
-    const myGameBoard = [];
+    
+    const myGameBoard = $("td").toArray();;
+    let result;
     return {
         appendTable
+        ,result
+        ,myGameBoard
     };
 })();
 GameBoard.appendTable;

@@ -1,6 +1,30 @@
-var turn = x
+/**use an array
+do all the logic from the array
+only render to dom no logic */
+
+/**Players will add their moves to the multidemensional array at index position and this will add the move from the array to the board on the corresponding position*/
+
+// var turn = x
+//to target value of element with jquery $('a["value"]). type (":type"), attribute ("[href]")
+//to load event on ready (element).ready(function){function}
+//should use $(element).on('event', function(){$(element).function()} ) event being click, hover, etc...
+//To get attributes of DOM elements $(element).click(function(e){e.currenttarget.innerhtml}) this specifically gets the innerhtml "text" or use outerhtml for all the tags
+//focus event for when you click into element use (element).focus(function){$(element).css(background)} change background 
+//For the above instead of element use this $(this).css use blur to unfocus $(elemenet).blur(function(){$(this).css(background)})
+//to see what someone is typing $(element).keyup(function(e){e.target.value}s
+//to get input var variable = $(element).val();
+//You can set html tags when using .html
+//to get values use the .text $(element.text())
+//Use .append to add inside an element
+//before and after is outside append prepend appento prependto is inside the element use the to methods to append elements to other elements.
+//.empty could use this inside of a loop based on length of table and empty all td.
+//https://github.com/bradtraversy/jquery_crash_course find the keyup preventfault this will show how to make a list and update it
+//next section is array methods
+//use .each method to loop through array $.each(myArr, function(i, val){$(#element).append('<tag>'+val+'</tag>')})  takes in index and value
+//to add dom elements to array var newArr = $(element).toArray(); and then to do something with it $.each(newArr, function(i, val){console.log(val.innerHTML)})
 
 const GameBoard = ((position, move) => {
+
     /**Create the gameboard initially with Jquery, 
      * loop over the gameboard and push it into 
      * myGameBoard. Use Jquery to update array
@@ -40,7 +64,8 @@ const GameBoard = ((position, move) => {
 
     
       $("body td").on("click", function(event){
-        makeMove(this);
+        // makeMove(this);
+        $(event).
     });
     
     
@@ -56,7 +81,7 @@ const GameBoard = ((position, move) => {
     //   }
 
       function makeMove(c)  {
-        $(c).html('X');
+        $(c).html(this);
       
         }
 

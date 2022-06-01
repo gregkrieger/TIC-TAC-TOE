@@ -55,7 +55,7 @@ const GameBoard = (() => {
       </tr>
     </tbody>
     </table>`
-    function appendTable(){$("body").append(table);} 
+    function appendTable(){$("body").append(table); displayController.appendButtons()} 
     //to add dom elements to array var newArr = $(element).toArray(); and then to do something with it $.each(newArr, function(i, val){console.log(val.innerHTML)})
      const myGameBoard = Array();
     
@@ -115,7 +115,7 @@ const displayController = (() =>{
     
     let control = ` 
                   <button type="button" onclick="GameBoard.makeMove()" class="btn btn-primary">End Turn</button>`
-    let appendButtons = $("body").append(control);
+    function appendButtons() {$("body").append(control);}  
     
     return {
       appendButtons
@@ -123,7 +123,7 @@ const displayController = (() =>{
 })();
 
 //set ids to somehow attach to a player
-displayController.appendButtons;
+// displayController.appendButtons;
 const player = () => {
   /**function factory to create players 
    * on inception of window and DOM each

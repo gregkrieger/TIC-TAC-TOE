@@ -39,34 +39,34 @@ const GameBoard = ((position, move) => {
     let table = `<table class="tg">
     <tbody>
       <tr>
-        <td class="tg-baqh"></td>
-        <td class="tg-0lax"></td>
-        <td class="tg-0lax"></td>
+        <td class="tg-baqh" contenteditable='true' ></td>
+        <td class="tg-0lax" contenteditable='true'></td>
+        <td class="tg-0lax" contenteditable='true'></td>
       </tr>
       <tr>
-        <td class="tg-baqh"></td>
-        <td class="tg-0lax"></td>
-        <td class="tg-0lax"></td>
+        <td class="tg-baqh" contenteditable='true'></td>
+        <td class="tg-0lax" contenteditable='true'></td>
+        <td class="tg-0lax" contenteditable='true'></td>
       </tr>
       <tr>
-        <td class="tg-baqh"></td>
-        <td class="tg-0lax"></td>
-        <td class="tg-0lax"></td>
+        <td class="tg-baqh" contenteditable='true'></td>
+        <td class="tg-0lax" contenteditable='true'></td>
+        <td class="tg-0lax" contenteditable='true'></td>
       </tr>
     </tbody>
     </table>`
     let appendTable = $("body").append(table);
+    //to add dom elements to array var newArr = $(element).toArray(); and then to do something with it $.each(newArr, function(i, val){console.log(val.innerHTML)})
+     const myGameBoard = Array();
     
-    // const myGameBoard = [$("td").toArray();]
-    const myGameBoard = [];
-
+  
     /**Record user position on board and which move they made 
      * pass it into a function here to write to the array.
      * Once array is updated update the board.
      */
 
     
-      $("body td").on("click", function(event){
+      $("button").on("click", function(event){
         // makeMove(this);
         makeMove(this);
     });
@@ -83,9 +83,15 @@ const GameBoard = ((position, move) => {
     // })
     //   }
 
-      function makeMove(c)  {
-        $(c).html(this);
-      
+      function makeMove()  {
+        $("table tr").each(function(i, v){
+          myGameBoard[i] = Array();
+          $(this).children('td').each(function(ii, vv){
+            myGameBoard[i][ii] = $(this).text();
+          });
+        })
+         
+      alert(myGameBoard);
         }
 
     let result;
@@ -108,8 +114,7 @@ const displayController = (() =>{
    */
     
     let control = ` 
-                  <button type="button" onclick="GameBoard.makeMove()" class="btn btn-primary" value = "X">X</button>
-                  <button type="button" onclick="GameBoard.makeMove()" class="btn btn-primary" value = "O">O</button>`
+                  <button type="button" onclick="GameBoard.makeMove()" class="btn btn-primary">End Turn</button>`
     let appendButtons = $("body").append(control);
     
     return {

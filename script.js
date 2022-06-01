@@ -25,7 +25,7 @@ only render to dom no logic */
 //so maybe empty array, loop through gameboard update array on each turn or players directly
 //https://stackoverflow.com/questions/7545641/how-to-create-multidimensional-array
 //don't even need buttons players can just type x or o
-const GameBoard = ((position, move) => {
+const GameBoard = (() => {
 
     /**Create the gameboard initially with Jquery, 
      * loop over the gameboard and push it into 
@@ -55,7 +55,7 @@ const GameBoard = ((position, move) => {
       </tr>
     </tbody>
     </table>`
-    let appendTable = $("body").append(table);
+    function appendTable(){$("body").append(table);} 
     //to add dom elements to array var newArr = $(element).toArray(); and then to do something with it $.each(newArr, function(i, val){console.log(val.innerHTML)})
      const myGameBoard = Array();
     
@@ -66,7 +66,7 @@ const GameBoard = ((position, move) => {
      */
 
     
-      $("button").on("click", function(event){
+      $("button.btn btn-primary").on("click", function(event){
         // makeMove(this);
         makeMove(this);
     });
@@ -103,7 +103,7 @@ const GameBoard = ((position, move) => {
         
     };
 })();
-GameBoard.appendTable;
+// GameBoard.appendTable;
 const displayController = (() =>{
   /**Use Jquery to create a controller
    * These controllers will be returned

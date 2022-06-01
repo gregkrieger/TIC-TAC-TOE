@@ -22,7 +22,9 @@ only render to dom no logic */
 //next section is array methods
 //use .each method to loop through array $.each(myArr, function(i, val){$(#element).append('<tag>'+val+'</tag>')})  takes in index and value
 //to add dom elements to array var newArr = $(element).toArray(); and then to do something with it $.each(newArr, function(i, val){console.log(val.innerHTML)})
-
+//so maybe empty array, loop through gameboard update array on each turn or players directly
+//https://stackoverflow.com/questions/7545641/how-to-create-multidimensional-array
+//don't even need buttons players can just type x or o
 const GameBoard = ((position, move) => {
 
     /**Create the gameboard initially with Jquery, 
@@ -55,7 +57,8 @@ const GameBoard = ((position, move) => {
     </table>`
     let appendTable = $("body").append(table);
     
-    const myGameBoard = $("td").toArray();
+    // const myGameBoard = [$("td").toArray();]
+    const myGameBoard = [];
 
     /**Record user position on board and which move they made 
      * pass it into a function here to write to the array.
@@ -65,7 +68,7 @@ const GameBoard = ((position, move) => {
     
       $("body td").on("click", function(event){
         // makeMove(this);
-        $(event).
+        makeMove(this);
     });
     
     
@@ -105,20 +108,8 @@ const displayController = (() =>{
    */
     
     let control = ` 
-                   
-                   <div class="form-outline">
-                   <button type="button" onclick="GameBoard.makeMove()" class="btn btn-primary" value = "X">X</button>
-                   <button type="button" onclick="GameBoard.makeMove()" class="btn btn-primary" value = "O">O</button>
-                   <label class="form-label" for="formControlReadonly">Score</label>
-                  <input
-                    class="form-control"
-                    id="formControlReadonly"
-                    type="text"
-                    value=""
-                    aria-label="readonly input example"
-                    readonly
-                  />
-                </div>`
+                  <button type="button" onclick="GameBoard.makeMove()" class="btn btn-primary" value = "X">X</button>
+                  <button type="button" onclick="GameBoard.makeMove()" class="btn btn-primary" value = "O">O</button>`
     let appendButtons = $("body").append(control);
     
     return {
@@ -127,7 +118,6 @@ const displayController = (() =>{
 })();
 
 //set ids to somehow attach to a player
-displayController.appendButtons;
 displayController.appendButtons;
 const player = () => {
   /**function factory to create players 

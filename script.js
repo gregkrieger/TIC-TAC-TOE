@@ -25,6 +25,9 @@ only render to dom no logic */
 //so maybe empty array, loop through gameboard update array on each turn or players directly
 //https://stackoverflow.com/questions/7545641/how-to-create-multidimensional-array
 //don't even need buttons players can just type x or o
+//each player is assigned their x or o they don't do x or o themselves make this a lot easier
+//basically going to assign a player a letter and that letter will be what they place on the board
+
 const GameBoard = (() => {
 
     /**Create the gameboard initially with Jquery, 
@@ -71,7 +74,17 @@ const GameBoard = (() => {
         makeMove(this);
     });
     
-    
+    for(int i = 0; i < 19683; ++i)
+{
+    int c = i;
+    for (int j = 0; j < 9; ++j)
+    {
+        cout << (c % 3) << " ";
+        c /= 3;
+    }
+
+    cout << endl;
+}
 
     // makeMove = (position) => {
     //   position = selectPosition;
@@ -93,7 +106,7 @@ const GameBoard = (() => {
          
       alert(myGameBoard);
         }
-
+        
     let result;
     return {
         appendTable

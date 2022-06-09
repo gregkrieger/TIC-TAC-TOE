@@ -74,17 +74,17 @@ const GameBoard = (() => {
         makeMove(this);
     });
     
-    for(int i = 0; i < 19683; ++i)
-{
-    int c = i;
-    for (int j = 0; j < 9; ++j)
-    {
-        cout << (c % 3) << " ";
-        c /= 3;
-    }
+// //     for(int i = 0; i < 19683; ++i)
+// // {
+// //     int c = i;
+// //     for (int j = 0; j < 9; ++j)
+// //     {
+// //         cout << (c % 3) << " ";
+// //         c /= 3;
+// //     }
 
-    cout << endl;
-}
+//     cout << endl;
+// }
 
     // makeMove = (position) => {
     //   position = selectPosition;
@@ -130,9 +130,17 @@ const displayController = (() =>{
                   <button type="button" onclick="GameBoard.makeMove()" class="btn btn-primary">End Turn</button>`
     function appendButtons() {$("body").append(control);}  
     
+    $('tg').on('click', function(e){
+      e.preventDefault();
+      (this).append('x');
+    })
+//http://jsfiddle.net/2FNdR/
+
     return {
       appendButtons
     }
+
+
 })();
 
 //set ids to somehow attach to a player

@@ -42,23 +42,32 @@ const GameBoard = (() => {
     let table = `<table class="tg">
     <tbody>
       <tr>
-        <td class="tg-baqh" contenteditable='true' ></td>
-        <td class="tg-0lax" contenteditable='true'></td>
-        <td class="tg-0lax" contenteditable='true'></td>
+        <td class="XO" role="button"><b class = "x" hidden>X</b><b hidden>O</b></td>
+        <td class="XO" role="button"></td>
+        <td class="XO" role="button"></td>
       </tr>
       <tr>
-        <td class="tg-baqh" contenteditable='true'></td>
-        <td class="tg-0lax" contenteditable='true'></td>
-        <td class="tg-0lax" contenteditable='true'></td>
+        <td class="XO" role="button"></td>
+        <td class="XO" role="button"></td>
+        <td class="XO" role="button"></td>
       </tr>
       <tr>
-        <td class="tg-baqh" contenteditable='true'></td>
-        <td class="tg-0lax" contenteditable='true'></td>
-        <td class="tg-0lax" contenteditable='true'></td>
+        <td class="XO" role="button"></td>
+        <td class="XO" role="button"></td>
+        <td class="XO" role="button"></td>
       </tr>
     </tbody>
     </table>`
-    function appendTable(){$("body").append(table); displayController.appendButtons()} 
+    function startGame(){
+      $("body").append(table); 
+      $(document).ready(
+        $("table").click(function(){
+          $("b").attr('hidden', false);
+          console.log("clock");
+        })
+      )
+     
+    } 
     //to add dom elements to array var newArr = $(element).toArray(); and then to do something with it $.each(newArr, function(i, val){console.log(val.innerHTML)})
      const myGameBoard = Array();
     
@@ -69,10 +78,10 @@ const GameBoard = (() => {
      */
 
     
-      $("button.btn btn-primary").on("click", function(event){
-        // makeMove(this);
-        makeMove(this);
-    });
+    //   $("button.btn btn-primary").on("click", function(event){
+    //     // makeMove(this);
+    //     makeMove(this);
+    // });
     
 // //     for(int i = 0; i < 19683; ++i)
 // // {
@@ -96,23 +105,32 @@ const GameBoard = (() => {
     // })
     //   }
 
-      function makeMove()  {
-        $("table tr").each(function(i, v){
-          myGameBoard[i] = Array();
-          $(this).children('td').each(function(ii, vv){
-            myGameBoard[i][ii] = $(this).text();
-          });
-        })
+      
+
+      // function makeMove()  {
+      //   // $("table tr").each(function(i, v){
+      //   //   myGameBoard[i] = Array();
+      //   //   $(this).children('td').each(function(ii, vv){
+      //   //     myGameBoard[i][ii] = $(this).text();
+      //   //   });
+      //   // })
          
-      alert(myGameBoard);
-        }
+      // //alert(myGameBoard);
+
+      //    while(game == 0){
+      //     for (var i = 0; 1 < myGameBoard.length; i++ ) {
+      //       var cubemyGamboard =  myGameBoard[i];
+      //       for(var j = 0; j < cubemyGamboard; j++){
+              
+      //       }
+      //     }
+      //    }
+      //   }
         
     let result;
     return {
-        appendTable
-        ,result
-        ,myGameBoard
-        ,makeMove
+        startGame
+       
         
     };
 })();
@@ -126,14 +144,14 @@ const displayController = (() =>{
    * Will have a scoreboard function.
    */
     
-    let control = ` 
-                  <button type="button" onclick="GameBoard.makeMove()" class="btn btn-primary">End Turn</button>`
-    function appendButtons() {$("body").append(control);}  
+    // let control = ` 
+    //               <button type="button" onclick="GameBoard.makeMove()" class="btn btn-primary">End Turn</button>`
+    // function appendButtons() {$("body").append(control);}  
     
-    $('tg').on('click', function(e){
-      e.preventDefault();
-      (this).append('x');
-    })
+    // $('tg').on('click', function(e){
+    //   e.preventDefault();
+    //   (this).append('x');
+    // })
 //http://jsfiddle.net/2FNdR/
 
     return {

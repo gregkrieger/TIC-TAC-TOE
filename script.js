@@ -42,19 +42,19 @@ const GameBoard = (() => {
     let table = `<table class="tg">
     <tbody>
       <tr>
-        <td class="XO" role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
-        <td class="XO" role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
-        <td class="XO" role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
+        <td  role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
+        <td  role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
+        <td  role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
       </tr>
       <tr>
-      <td class="XO" role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
-      <td class="XO" role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
-      <td class="XO" role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
+      <td role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
+      <td  role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
+      <td  role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
       </tr>
       <tr>
-      <td class="XO" role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
-      <td class="XO" role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
-      <td class="XO" role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
+      <td  role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
+      <td  role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
+      <td  role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
       </tr>
     </tbody>
     </table>`
@@ -67,21 +67,68 @@ const GameBoard = (() => {
       function updateArray(){
         
       }
-      var myGameBoard = new Array();
+      var myGameBoard = [...Array(3)].map(e => Array(3));
       var i = 0;
+      var playerOne = 0;
+      var playerTwo = 0;
       var position;
+
+      var checkResult = function(){
+        $("table tr").each(function(i, val){
+            $(this).find('td').each(function(j, val2){
+                myGameBoard[i][j] = parseInt($(this).attr("data-points"));
+            });
+        });
+        
+        for(var i = 0; i<3;i++){
+            var rowSum = 0;
+            for(var j = 0; j<3;j++){
+                rowSum += myGameBoard[i][j];
+            }
+            if(rowSum === 3)
+                alert("Circle WIN!");
+            else if(rowSum === -3)
+                alert("Cross WIN!");
+        }
+        
+        for(var i = 0; i<3;i++){
+            var colSum = 0;
+            for(var j = 0; j<3;j++){
+                colSum += myGameBoard[j][i];
+            }
+            if(colSum === 3)
+                alert("Circle WIN!");
+            else if(colSum === -3)
+                alert("Cross WIN!");
+        }
+        
+        if(myGameBoard[0][0] + myGameBoard[1][1] + myGameBoard[2][2] === 3)
+            alert("Circle WIN!");
+        else if(myGameBoard[0][0] + myGameBoard[1][1] + myGameBoard[2][2] === -3)
+            alert("Cross WIN!");
+        
+        if(myGameBoard[2][0] + myGameBoard[1][1] + myGameBoard[0][2] === 3)
+            alert("Circle WIN!");
+        else if(myGameBoard[2][0] + myGameBoard[1][1] + myGameBoard[0][2] === -3)
+            alert("Cross WIN!");
+    };
+
       $(document).ready(
         $("td").click(function(){
           $("tr").index(this)
-          if(i == 0){
+          if($(this).hasClass('filled')){
+            alert('field is filled');
+         }
+          else if(i == 0){
             $(this).find('.x').attr('hidden', false);
             $(this).find('.o').remove();
             i++
             var row_index = $(this).parent().index();
             var col_index = $(this).index();
             console.log(row_index, col_index)
-            // myGameBoard[row_index][col_index] = "x";
-            myGameBoard[row_index].splice(col_index, "x");
+          myGameBoard[row_index][col_index] = "x";
+          $(this).addClass('filled')
+            //myGameBoard[row_index].splice(col_index, "x");
             console.log(myGameBoard);
            
            
@@ -93,16 +140,24 @@ const GameBoard = (() => {
             var row_index = $(this).parent().index();
             var col_index = $(this).index();
             console.log(row_index, col_index)
-            // myGameBoard[row_index][col_index] = "o";
-            myGameBoard[row_index].splice(col_index, "o");
+            myGameBoard[row_index][col_index] = "o";
+            $(this).addClass('filled')
+            //myGameBoard[row_index].splice(col_index, "o");
             console.log(myGameBoard);
           }
           
-          
+          checkResult();
         })
       )
      
     } 
+
+    function newGame(){
+      
+       $("table").remove();
+    
+    startGame();
+    }
     //to add dom elements to array var newArr = $(element).toArray(); and then to do something with it $.each(newArr, function(i, val){console.log(val.innerHTML)})
      
   
@@ -163,7 +218,9 @@ const GameBoard = (() => {
         
     let result;
     return {
-        startGame
+        startGame,
+        newGame
+
        
         
     };

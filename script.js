@@ -42,35 +42,69 @@ const GameBoard = (() => {
     let table = `<table class="tg">
     <tbody>
       <tr>
-        <td class="XO" role="button"><b class = "x" hidden>X</b><b hidden>O</b></td>
-        <td class="XO" role="button"></td>
-        <td class="XO" role="button"></td>
+        <td class="XO" role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
+        <td class="XO" role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
+        <td class="XO" role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
       </tr>
       <tr>
-        <td class="XO" role="button"></td>
-        <td class="XO" role="button"></td>
-        <td class="XO" role="button"></td>
+      <td class="XO" role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
+      <td class="XO" role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
+      <td class="XO" role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
       </tr>
       <tr>
-        <td class="XO" role="button"></td>
-        <td class="XO" role="button"></td>
-        <td class="XO" role="button"></td>
+      <td class="XO" role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
+      <td class="XO" role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
+      <td class="XO" role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
       </tr>
     </tbody>
     </table>`
     function startGame(){
       $("body").append(table); 
+      // $(document).ready(
+       
+      // )
+      console.log(myGameBoard);
+      function updateArray(){
+        
+      }
+      var myGameBoard = new Array();
+      var i = 0;
+      var position;
       $(document).ready(
-        $("table").click(function(){
-          $("b").attr('hidden', false);
-          console.log("clock");
+        $("td").click(function(){
+          $("tr").index(this)
+          if(i == 0){
+            $(this).find('.x').attr('hidden', false);
+            $(this).find('.o').remove();
+            i++
+            var row_index = $(this).parent().index();
+            var col_index = $(this).index();
+            console.log(row_index, col_index)
+            // myGameBoard[row_index][col_index] = "x";
+            myGameBoard[row_index].splice(col_index, "x");
+            console.log(myGameBoard);
+           
+           
+          }
+          else if(i == 1){
+            $(this).find('.o').attr('hidden', false);
+            $(this).find('.x').remove();
+            i--
+            var row_index = $(this).parent().index();
+            var col_index = $(this).index();
+            console.log(row_index, col_index)
+            // myGameBoard[row_index][col_index] = "o";
+            myGameBoard[row_index].splice(col_index, "o");
+            console.log(myGameBoard);
+          }
+          
+          
         })
       )
      
     } 
     //to add dom elements to array var newArr = $(element).toArray(); and then to do something with it $.each(newArr, function(i, val){console.log(val.innerHTML)})
-     const myGameBoard = Array();
-    
+     
   
     /**Record user position on board and which move they made 
      * pass it into a function here to write to the array.
@@ -155,7 +189,7 @@ const displayController = (() =>{
 //http://jsfiddle.net/2FNdR/
 
     return {
-      appendButtons
+      // appendButtons
     }
 
 

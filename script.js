@@ -38,7 +38,7 @@ const GameBoard = (() => {
      * the conditions match what is needed for a win.
      * When conditions are met display an alert 
      * Update the score label.
-     * Generated table with https://www.tablesgenerator.com/html_tables#*/ 
+     */ 
     let table = `<table class="tg">
     <tbody>
       <tr>
@@ -74,12 +74,7 @@ const GameBoard = (() => {
       var position;
 
       var checkResult = function(){
-        $("table tr").each(function(i, val){
-            $(this).find('td').each(function(j, val2){
-                myGameBoard[i][j] = parseInt($(this).attr("data-points"));
-            });
-        });
-        
+      
         for(var i = 0; i<3;i++){
             var rowSum = 0;
             for(var j = 0; j<3;j++){
@@ -126,7 +121,7 @@ const GameBoard = (() => {
             var row_index = $(this).parent().index();
             var col_index = $(this).index();
             console.log(row_index, col_index)
-          myGameBoard[row_index][col_index] = "x";
+          myGameBoard[row_index][col_index] = -1;
           $(this).addClass('filled')
             //myGameBoard[row_index].splice(col_index, "x");
             console.log(myGameBoard);
@@ -140,7 +135,7 @@ const GameBoard = (() => {
             var row_index = $(this).parent().index();
             var col_index = $(this).index();
             console.log(row_index, col_index)
-            myGameBoard[row_index][col_index] = "o";
+            myGameBoard[row_index][col_index] = 1;
             $(this).addClass('filled')
             //myGameBoard[row_index].splice(col_index, "o");
             console.log(myGameBoard);
@@ -167,54 +162,9 @@ const GameBoard = (() => {
      */
 
     
-    //   $("button.btn btn-primary").on("click", function(event){
-    //     // makeMove(this);
-    //     makeMove(this);
-    // });
+  
+
     
-// //     for(int i = 0; i < 19683; ++i)
-// // {
-// //     int c = i;
-// //     for (int j = 0; j < 9; ++j)
-// //     {
-// //         cout << (c % 3) << " ";
-// //         c /= 3;
-// //     }
-
-//     cout << endl;
-// }
-
-    // makeMove = (position) => {
-    //   position = selectPosition;
-    //   $("tbody").on("click", function(event){
-    //     let move = event.target.className;
-    //     alert(event.target.className)
-    //   $(`.${position}`).html(`${move}`)
-      
-    // })
-    //   }
-
-      
-
-      // function makeMove()  {
-      //   // $("table tr").each(function(i, v){
-      //   //   myGameBoard[i] = Array();
-      //   //   $(this).children('td').each(function(ii, vv){
-      //   //     myGameBoard[i][ii] = $(this).text();
-      //   //   });
-      //   // })
-         
-      // //alert(myGameBoard);
-
-      //    while(game == 0){
-      //     for (var i = 0; 1 < myGameBoard.length; i++ ) {
-      //       var cubemyGamboard =  myGameBoard[i];
-      //       for(var j = 0; j < cubemyGamboard; j++){
-              
-      //       }
-      //     }
-      //    }
-      //   }
         
     let result;
     return {
@@ -235,15 +185,8 @@ const displayController = (() =>{
    * Will have a scoreboard function.
    */
     
-    // let control = ` 
-    //               <button type="button" onclick="GameBoard.makeMove()" class="btn btn-primary">End Turn</button>`
-    // function appendButtons() {$("body").append(control);}  
-    
-    // $('tg').on('click', function(e){
-    //   e.preventDefault();
-    //   (this).append('x');
-    // })
-//http://jsfiddle.net/2FNdR/
+   
+
 
     return {
       // appendButtons

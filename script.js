@@ -69,8 +69,8 @@ const GameBoard = (() => {
       }
       var myGameBoard = [...Array(3)].map(e => Array(3));
       var i = 0;
-      var playerOne = 0;
-      var playerTwo = 0;
+      var playerOne = player('Greg', 0);
+      var playerTwo = player('Charlie', 0);
       var position;
 
       var checkResult = function(){
@@ -169,7 +169,9 @@ const GameBoard = (() => {
     let result;
     return {
         startGame,
-        newGame
+        newGame,
+        playerOne,
+        playerTwo
 
        
         
@@ -177,14 +179,12 @@ const GameBoard = (() => {
 })();
 // GameBoard.appendTable;
 const displayController = (() =>{
-  /**Use Jquery to create a controller
-   * These controllers will be returned
-   * Each player will have their own controller 
-   * Controller will write to array by passing 
-   * the move to the gameBoard. 
-   * Will have a scoreboard function.
-   */
-    
+  //let div = ``
+    $(document).ready(
+      $('body').append('Player One Score' + GameBoard.playerOne.name),
+      $('body').append('Player Two Score' + GameBoard.playerTwo.name)
+      //$("body").append(table); 
+    )
    
 
 
@@ -197,12 +197,14 @@ const displayController = (() =>{
 
 //set ids to somehow attach to a player
 // displayController.appendButtons;
-const player = () => {
+const player = (name, score) => {
   /**function factory to create players 
    * on inception of window and DOM each
    * player will be give a controller 
    * Each player will be given a scoreboard
    */
+  
+  return {name, score};
 };
 
 

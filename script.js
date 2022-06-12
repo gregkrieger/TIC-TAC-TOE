@@ -64,14 +64,17 @@ const GameBoard = (() => {
     let playerTwoScore = 0;
     
     function startGame(){
-      $("body").append(table); 
+      $(".container").append(table); 
       
       console.log(myGameBoard);
       
       var myGameBoard = [...Array(3)].map(e => Array(3));
       var i = 0;
       
-      
+      const playerOne = player(displayController.pOne, playerOneScore);
+
+      const playerTwo = player(displayController.pTwo, playerTwoScore);
+
 
       var checkResult = function(){
       
@@ -190,7 +193,8 @@ const GameBoard = (() => {
     function newGame(){
       
        $("table").remove();
-    
+       $('#pOneSetScore').val(playerOneScore);
+       $('#pTwoSetScore').val(playerTwoScore);
     startGame();
     }
     //to add dom elements to array var newArr = $(element).toArray(); and then to do something with it $.each(newArr, function(i, val){console.log(val.innerHTML)})
@@ -229,11 +233,11 @@ const displayController = (() =>{
   // <label for="pTwo"></label>
   // <input type="text" id="pTwo" name="pTwo"></input>
   // <input type="submit" value="Submit">`
-  let pOne =  player;
-      let pTwo =  player;
-      pOne = "Greg";
-      pTwo = "Charlie";
-    console.log(pOne)
+  // let pOne =  player.name;
+  //     let pTwo =  player.name;
+    //   pOne = "Greg";
+    //   pTwo = "Charlie";
+    // console.log(pOne)
   
   let form = 
   `<form>
@@ -245,7 +249,8 @@ const displayController = (() =>{
   </form>`
   //<input type="submit" value="Submit" onclick = "displayController.submitPlayer()"></input>
   $(document).ready( $("body").append(form))
- 
+  
+
   // function submitPlayer(){
     
     
@@ -257,12 +262,16 @@ const displayController = (() =>{
   // console.log(pOne.name.value, pTwo.name.value)
   //   )
   // }
-  let gameSet = `<button  class = "startGame" onclick="GameBoard.startGame()">Start Game</button>
+  let gameSet = `<div class = "container"><button  class = "startGame" onclick="GameBoard.startGame()">Start Game</button>
   <button  class = "newGame" onclick="GameBoard.newGame()">New Game</button>
-  <label for="pOneSet"></label>
+  <label for="pOneSet">Player One: </label>
   <input type="text" id="pOneSet" name="pOneSet"></input>
-  <label for="pTwoSet"></label>
-  <input type="text" id="pTwoSet" name="pTwoSet"></input>`
+  <label for="pTwoSet">Player Two: </label>
+  <input type="text" id="pTwoSet" name="pTwoSet"></input>
+  <label for="pOneSetScore">Score: </label>
+  <input type="text" id="pOneSetScore" name="pOneSetScore"></input>
+  <label for="pTwoSetScore">Score: </label>
+  <input type="text" id="pTwoSetScore" name="pTwoSetScore"></input></div> `
   
   $(document).ready(function() {
     
@@ -273,17 +282,22 @@ const displayController = (() =>{
         // pOne.name = $('#pOne')
         // pTwo.name = $('#pTwo')
         
-        pOne.name =  $('#pOne').val()
-        pTwo.name =  $('#pTwo').val()
-        $('#pOneSet').val(pOne)
-        $("#pTwoSet").val(pTwo)
+        pOne=  $('#pOne').val()
+        pTwo =  $('#pTwo').val()
+        
+        // $('#pOneSet').val(pOne)
+        // $("#pTwoSet").val(pTwo)
         
         
       
         console.log(pOne, pTwo);
         $(document).ready( $("body").append(gameSet));
+        $(document).ready( $("form").remove());
+        $('#pOneSet').val(pOne);
+        $('#pTwoSet').val(pTwo);
     
     });
+  
   });
   
 

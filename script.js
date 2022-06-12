@@ -35,7 +35,7 @@ const GameBoard = (() => {
      * myGameBoard. Use Jquery to update array
      * and DOM with the player inputs. after each
      * round loop over the array to determine if any of
-     * the conditions match what is needed for a win.
+     * the conditions match what is needed for a wins.
      * When conditions are met display an alert 
      * Update the score label.
      */ 
@@ -57,21 +57,21 @@ const GameBoard = (() => {
       <td  role="button"><b class = "x" hidden>X</b><b class = "o" hidden>O</b></td>
       </tr>
     </tbody>
-    </table>`
+    </table>
+    `
+    
+    let playerOneScore = 0;
+    let playerTwoScore = 0;
+    
     function startGame(){
       $("body").append(table); 
-      // $(document).ready(
-       
-      // )
+      
       console.log(myGameBoard);
-      function updateArray(){
-        
-      }
+      
       var myGameBoard = [...Array(3)].map(e => Array(3));
       var i = 0;
-      var playerOne = player('Greg', 0);
-      var playerTwo = player('Charlie', 0);
-      var position;
+      
+      
 
       var checkResult = function(){
       
@@ -80,10 +80,20 @@ const GameBoard = (() => {
             for(var j = 0; j<3;j++){
                 rowSum += myGameBoard[i][j];
             }
-            if(rowSum === 3)
-                alert("Circle WIN!");
+            if(rowSum === 3){
+              alert("Player One wins!");
+               playerOneScore++;
+               console.log("Player 1: " + playerOneScore, "Player 2: " + playerTwoScore)
+
+            }
+                
             else if(rowSum === -3)
-                alert("Cross WIN!");
+            {
+              alert("Player Two wins!");
+               playerTwoScore++;
+               console.log("Player 1: " + playerOneScore, "Player 2: " + playerTwoScore)
+            }
+                
         }
         
         for(var i = 0; i<3;i++){
@@ -92,20 +102,50 @@ const GameBoard = (() => {
                 colSum += myGameBoard[j][i];
             }
             if(colSum === 3)
-                alert("Circle WIN!");
+            {
+              alert("Player One wins!");
+               playerOneScore++;
+               console.log("Player 1: " + playerOneScore, "Player 2: " + playerTwoScore)
+            }
+                
             else if(colSum === -3)
-                alert("Cross WIN!");
+            {
+              alert("Player Two wins!");
+               playerTwoScore++;
+               console.log("Player 1: " + playerOneScore, "Player 2: " + playerTwoScore)
+            }
+                
         }
         
         if(myGameBoard[0][0] + myGameBoard[1][1] + myGameBoard[2][2] === 3)
-            alert("Circle WIN!");
+        {
+          alert("Player One wins!");
+           playerOneScore++;
+           console.log("Player 1: " + playerOneScore, "Player 2: " + playerTwoScore)
+        }
+            
         else if(myGameBoard[0][0] + myGameBoard[1][1] + myGameBoard[2][2] === -3)
-            alert("Cross WIN!");
+        {
+          alert("Player Two wins!");
+           playerTwoScore++;
+           console.log("Player 1: " + playerOneScore, "Player 2: " + playerTwoScore)
+        }
+            
         
         if(myGameBoard[2][0] + myGameBoard[1][1] + myGameBoard[0][2] === 3)
-            alert("Circle WIN!");
+        {
+          alert("Player One wins!");
+           playerOneScore++;
+           console.log("Player 1: " + playerOneScore, "Player 2: " + playerTwoScore)
+        }
+            
         else if(myGameBoard[2][0] + myGameBoard[1][1] + myGameBoard[0][2] === -3)
-            alert("Cross WIN!");
+        { 
+          alert("Player Two wins!");
+           playerTwoScore++;
+           console.log("Player 1: " + playerOneScore, "Player 2: " + playerTwoScore)
+        }
+            
     };
 
       $(document).ready(
@@ -154,58 +194,110 @@ const GameBoard = (() => {
     startGame();
     }
     //to add dom elements to array var newArr = $(element).toArray(); and then to do something with it $.each(newArr, function(i, val){console.log(val.innerHTML)})
-     
-  
+
     /**Record user position on board and which move they made 
      * pass it into a function here to write to the array.
      * Once array is updated update the board.
      */
 
-    
-  
-
-    
-        
-    let result;
     return {
         startGame,
         newGame,
-        playerOne,
-        playerTwo
+        playerOneScore,
+        playerTwoScore
+
 
        
         
     };
 })();
-// GameBoard.appendTable;
-const displayController = (() =>{
-  //let div = ``
-    $(document).ready(
-      $('body').append('Player One Score' + GameBoard.playerOne.name),
-      $('body').append('Player Two Score' + GameBoard.playerTwo.name)
-      //$("body").append(table); 
-    )
-   
-
-
-    return {
-      // appendButtons
-    }
-
-
-})();
-
 //set ids to somehow attach to a player
 // displayController.appendButtons;
 const player = (name, score) => {
   /**function factory to create players 
-   * on inception of window and DOM each
+   * on inception of winsdow and DOM each
    * player will be give a controller 
    * Each player will be given a scoreboard
    */
   
   return {name, score};
 };
+// GameBoard.appendTable;
+const displayController = (() =>{
+  // let users = ` <label for="pOne"></label>
+  // <input type="text" id="pOne" name="pOne"></input>
+  // <label for="pTwo"></label>
+  // <input type="text" id="pTwo" name="pTwo"></input>
+  // <input type="submit" value="Submit">`
+  let pOne =  player;
+      let pTwo =  player;
+      pOne = "Greg";
+      pTwo = "Charlie";
+    console.log(pOne)
+  
+  let form = 
+  `<form>
+  <label for="pOne"></label>
+  <input type="text" id="pOne" name="pOne"></input>
+  <label for="pTwo"></label>
+  <input type="text" id="pTwo" name="pTwo"></input>
+  <input id = "formButton" type="submit" value="Submit" ></input>
+  </form>`
+  //<input type="submit" value="Submit" onclick = "displayController.submitPlayer()"></input>
+  $(document).ready( $("body").append(form))
+ 
+  // function submitPlayer(){
+    
+    
+  // $(document).ready(
+  
+  // $(':submit').find('form').hide(),
+  // $(':submit').find('.startGame').attr('hidden', false),
+  // $(':submit').find('.newGame').attr('hidden', false),
+  // console.log(pOne.name.value, pTwo.name.value)
+  //   )
+  // }
+  let gameSet = `<button  class = "startGame" onclick="GameBoard.startGame()">Start Game</button>
+  <button  class = "newGame" onclick="GameBoard.newGame()">New Game</button>
+  <label for="pOneSet"></label>
+  <input type="text" id="pOneSet" name="pOneSet"></input>
+  <label for="pTwoSet"></label>
+  <input type="text" id="pTwoSet" name="pTwoSet"></input>`
+  
+  $(document).ready(function() {
+    
+    $("#formButton").click(function(e) {
+      
+      e.preventDefault();
+      $("form").toggle();
+        // pOne.name = $('#pOne')
+        // pTwo.name = $('#pTwo')
+        
+        pOne.name =  $('#pOne').val()
+        pTwo.name =  $('#pTwo').val()
+        $('#pOneSet').val(pOne)
+        $("#pTwoSet").val(pTwo)
+        
+        
+      
+        console.log(pOne, pTwo);
+        $(document).ready( $("body").append(gameSet));
+    
+    });
+  });
+  
+
+    return {
+      // appendButtons
+      // submitPlayer
+      pOne,
+      pTwo
+    }
+
+
+})();
+
+
 
 
 /**Game logic will be a loop until victory is determined 

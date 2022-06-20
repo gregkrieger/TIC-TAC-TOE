@@ -59,22 +59,24 @@ const GameBoard = (() => {
     </tbody>
     </table>
     `
+
+   
     
+
+
     let playerOneScore = 0;
     let playerTwoScore = 0;
     
     function startGame(){
       $(".container").append(table); 
-      
+      let playerTwo = displayController.playerTwo
       console.log(myGameBoard);
       
       var myGameBoard = [...Array(3)].map(e => Array(3));
       var i = 0;
       
-      const playerOne = player(displayController.pOne, playerOneScore);
-
-      const playerTwo = player(displayController.pTwo, playerTwoScore);
-
+      
+      
 
       var checkResult = function(){
       
@@ -152,6 +154,8 @@ const GameBoard = (() => {
     };
 
       $(document).ready(
+        //If pTwo = computer then go to alternate game else play normal
+        console.log(playerTwo),
         $("td").click(function(){
           $("tr").index(this)
           if($(this).hasClass('filled')){
@@ -197,7 +201,7 @@ const GameBoard = (() => {
        $('#pTwoSetScore').val(playerTwoScore);
     startGame();
     }
-    //to add dom elements to array var newArr = $(element).toArray(); and then to do something with it $.each(newArr, function(i, val){console.log(val.innerHTML)})
+   
 
     /**Record user position on board and which move they made 
      * pass it into a function here to write to the array.
@@ -215,53 +219,31 @@ const GameBoard = (() => {
         
     };
 })();
-//set ids to somehow attach to a player
-// displayController.appendButtons;
+
 const player = (name, score) => {
-  /**function factory to create players 
-   * on inception of winsdow and DOM each
-   * player will be give a controller 
-   * Each player will be given a scoreboard
-   */
+ 
   
   return {name, score};
 };
-// GameBoard.appendTable;
+
 const displayController = (() =>{
-  // let users = ` <label for="pOne"></label>
-  // <input type="text" id="pOne" name="pOne"></input>
-  // <label for="pTwo"></label>
-  // <input type="text" id="pTwo" name="pTwo"></input>
-  // <input type="submit" value="Submit">`
-  // let pOne =  player.name;
-  //     let pTwo =  player.name;
-    //   pOne = "Greg";
-    //   pTwo = "Charlie";
-    // console.log(pOne)
   
   let form = 
   `<form>
   <label for="pOne"></label>
   <input type="text" id="pOne" name="pOne"></input>
-  <label for="pTwo"></label>
-  <input type="text" id="pTwo" name="pTwo"></input>
+  <label>Second player or computer.
+<input list="pTwo" name="mypTwo" id="pTwolist" /></label>
+  <datalist id="pTwo">
+    <option value="computer">
+  </datalist>
   <input id = "formButton" type="submit" value="Submit" ></input>
   </form>`
-  //<input type="submit" value="Submit" onclick = "displayController.submitPlayer()"></input>
+
   $(document).ready( $("body").append(form))
   
 
-  // function submitPlayer(){
-    
-    
-  // $(document).ready(
-  
-  // $(':submit').find('form').hide(),
-  // $(':submit').find('.startGame').attr('hidden', false),
-  // $(':submit').find('.newGame').attr('hidden', false),
-  // console.log(pOne.name.value, pTwo.name.value)
-  //   )
-  // }
+
   let gameSet = `<div class = "container"><button  class = "startGame" onclick="GameBoard.startGame()">Start Game</button>
   <button  class = "newGame" onclick="GameBoard.newGame()">New Game</button>
   <label for="pOneSet">Player One: </label>
@@ -273,39 +255,38 @@ const displayController = (() =>{
   <label for="pTwoSetScore">Score: </label>
   <input type="text" id="pTwoSetScore" name="pTwoSetScore"></input></div> `
   
+  let playerTwo;
+
   $(document).ready(function() {
     
     $("#formButton").click(function(e) {
       
       e.preventDefault();
       $("form").toggle();
-        // pOne.name = $('#pOne')
-        // pTwo.name = $('#pTwo')
-        
+       
         pOne=  $('#pOne').val()
-        pTwo =  $('#pTwo').val()
+        pTwo =  $('#pTwolist').val()
         
-        // $('#pOneSet').val(pOne)
-        // $("#pTwoSet").val(pTwo)
-        
-        
-      
         console.log(pOne, pTwo);
         $(document).ready( $("body").append(gameSet));
         $(document).ready( $("form").remove());
         $('#pOneSet').val(pOne);
         $('#pTwoSet').val(pTwo);
-    
+        
+        
     });
-  
+    
   });
-  
-
+  playerTwo =  GameBoard.setPlayerTwo(pTwo)
+  // function returnPlayers(){
+  //   let playersOne = pOne;
+  //   let playersTwo = pTwo;
+  //   return playersOne, playersTwo;
+  // }
     return {
-      // appendButtons
-      // submitPlayer
-      pOne,
+    
       pTwo
+       
     }
 
 
